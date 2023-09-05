@@ -8,6 +8,10 @@ let timemap = {
 
 }
 
+let diffmap = {
+
+}
+
 const ws = new WebSocket('ws://cb-stage-ws-alb-454351763.ap-south-1.elb.amazonaws.com:8080', {
   perMessageDeflate: false
 });
@@ -42,10 +46,12 @@ ws.on('message', function message(data) {
 
 
   const requiredtime = endTime - timemap[sdata?.requestcount]
+  diffmap[sdata?.requestcount] = requiredtime
   statsdclient.timing('response_time', requiredtime)
   console.log('response received', sdata.requestcount)
 });
 
 ws.on('close', function close() {
   console.log('disconnected');
+  console.log("DIFF MAP : ", JSON.stringify(diffmap))
 });
