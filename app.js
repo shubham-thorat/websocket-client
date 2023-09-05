@@ -50,7 +50,7 @@ ws.on('message', function message(data) {
   const requiredtime = endTime - timemap[sdata?.requestcount]
   diffmap[sdata?.requestcount] = requiredtime
   statsdclient.timing('response_time', requiredtime)
-  console.log('response received', sdata.requestcount)
+  console.log('response received', sdata.requestcount, " requiredtime: ", requiredtime)
 });
 
 ws.on('close', function close() {
