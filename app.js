@@ -1,5 +1,6 @@
 const WebSocket = require('ws')
 const statsdclient = require('./statsD')
+require('dotenv').config()
 
 const startTime = Date.now()
 
@@ -19,8 +20,8 @@ ws.on('error', (args) => {
 ws.on('open', function open() {
   const endTime = Date.now()
   console.log(`Websocket connection time ${endTime - startTime}ms `)
-
-  for (let i = 0; i < 10; i++) {
+  const total_request = process.env.TOTAL || 10000
+  for (let i = 0; i < total_request; i++) {
     timemap[i] = Date.now()
     statsdclient.timing('request_send', 1)
     ws.send(JSON.stringify({
