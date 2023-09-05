@@ -26,9 +26,9 @@ ws.on('open', function open() {
   console.log(`Websocket connection time ${endTime - startTime}ms `)
   const total_request = process.env.TOTAL || 10000
   for (let i = 0; i < total_request; i++) {
-    timemap[i] = Date.now()
     statsdclient.timing('request_send', 1)
     setTimeout(() => {
+      timemap[i] = Date.now()
       ws.send(JSON.stringify({
         key: 'key',
         value: 'value',
