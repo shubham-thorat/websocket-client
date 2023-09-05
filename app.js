@@ -1,6 +1,5 @@
 const WebSocket = require('ws')
 const statsdclient = require('./statsD')
-const sleep = require('sleep')
 require('dotenv').config()
 
 const startTime = Date.now()
