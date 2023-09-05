@@ -29,12 +29,13 @@ ws.on('open', function open() {
   for (let i = 0; i < total_request; i++) {
     timemap[i] = Date.now()
     statsdclient.timing('request_send', 1)
-    ws.send(JSON.stringify({
-      key: 'key',
-      value: 'value',
-      requestcount: i
-    }))
-    sleep.sleep(1)
+    setTimeout(() => {
+      ws.send(JSON.stringify({
+        key: 'key',
+        value: 'value',
+        requestcount: i
+      }))
+    }, i * 1000);
   }
 });
 
