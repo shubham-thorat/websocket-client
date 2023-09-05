@@ -7,7 +7,7 @@ let timemap = {
 
 }
 
-const ws = new WebSocket('ws:localhost:8080', {
+const ws = new WebSocket('ws://cb-stage-ws-alb-454351763.ap-south-1.elb.amazonaws.com:8080', {
   perMessageDeflate: false
 });
 
